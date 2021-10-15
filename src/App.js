@@ -33,10 +33,7 @@ function Home() {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/about">About</Link>
-          </li>
-          <li>
-            <Link to="/loggedIn">Users</Link>
+            <Link to="/loggedIn">log in </Link>
           </li>
         </ul>
       </nav>
@@ -59,16 +56,28 @@ function Users() {
     }, )
 
     React.useEffect(() => {
-        setInterval(() => {
+        let interval = setInterval(() => {
             setSeconds(prevAmount => prevAmount + 1);
         }, 1000);
+        window.addEventListener("keypress", () => {
+            setSeconds(0)
+        })
+        window.addEventListener( "mousemove" , () => {
+            setSeconds(0)
+        })
+        window.addEventListener("mousedown", () => {
+            setSeconds(0)
+        })
+        window.addEventListener( "mousewheel" , () => {
+            setSeconds(0)
+        })
     }, [])
 
     return (
         <div>
-        <h2>You're session started</h2>
-        <h2>You'll be logged out in {maxSeconds} Seconds</h2>
-        <h3>Timer: {seconds}</h3>
+            <h2>You're session started</h2>
+            <h2>You'll be logged out after {maxSeconds} Seconds of inactivity</h2>
+            <h3>Timer: {seconds}</h3>
         </div>
     );
 }
